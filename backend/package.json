@@ -5,11 +5,19 @@
   "devDependencies": {
     "bun-types": "latest"
   },
+  "scripts": {
+    "migration:generate": "sh ./migration-generate.sh $1",
+    "migration:run": "npx typeorm-ts-node-esm migration:run -d ./data-source.ts",
+    "migration:revert": "npx typeorm-ts-node-esm migration:revert -d ./data-source.ts "
+  },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
     "@apollo/server": "^4.9.4",
-    "graphql": "^16.8.1"
+    "graphql": "^16.8.1",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1",
+    "typeorm": "^0.3.17"
   }
 }

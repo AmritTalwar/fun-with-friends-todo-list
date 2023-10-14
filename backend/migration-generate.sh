@@ -1,0 +1,1 @@
+npx typeorm-ts-node-esm migration:generate ./migrations/$1 -d ./data-source.ts
