@@ -31,6 +31,7 @@ const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
 
 const executableSchema = makeExecutableSchema({ typeDefs, resolvers });
 
+// Spin up Apollo GQL server
 const server = new ApolloServer({ schema: executableSchema });
 
 startStandaloneServer(server, { listen: { port: 3000 } }).then(() => {
