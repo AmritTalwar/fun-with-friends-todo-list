@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import { AppDataSource } from "./data-source";
 import { buildSchema, buildTypeDefsAndResolvers } from "type-graphql";
 import { TodoResolver } from "./src/resolvers/todo.resolver";
@@ -19,10 +21,12 @@ await AppDataSource.initialize()
 await buildSchema({
   resolvers: [TodoResolver],
   emitSchemaFile: true,
+  validate: false,
 });
 
 const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
   resolvers: [TodoResolver],
+  validate: false,
 });
 
 const executableSchema = makeExecutableSchema({ typeDefs, resolvers });

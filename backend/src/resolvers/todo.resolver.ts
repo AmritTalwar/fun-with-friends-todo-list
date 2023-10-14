@@ -1,6 +1,7 @@
-import { Resolver, Query } from "type-graphql";
-import { Todo } from "../models/todo.entity";
+import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import { AppDataSource } from "../../data-source";
+import { CreateTodoInput } from "../types";
+import { Todo } from "../models";
 
 @Resolver()
 export class TodoResolver {
@@ -8,5 +9,11 @@ export class TodoResolver {
   async getAllTodoItems() {
     const todoRepo = AppDataSource.getRepository(Todo);
     return todoRepo.find();
+  }
+
+  @Mutation(() => Todo)
+  async addTodo(@Arg("newTodo") newTodo: CreateTodoInput) {
+    const todoRepo = AppDataSource.getRepository(Todo);
+    return todoRepo.save(newTodo);
   }
 }

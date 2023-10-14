@@ -16,15 +16,7 @@ export class Todo {
   @Column()
   description: string;
 
-  @Field()
-  @Column()
-  createdAt: string;
-
-  @Field()
-  @Column()
-  updatedAt: string;
-
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   dueDate?: string;
 }

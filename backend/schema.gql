@@ -3,15 +3,23 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input CreateTodoInput {
+  description: String!
+  dueDate: String
+  title: String!
+}
+
+type Mutation {
+  addTodo(newTodo: CreateTodoInput!): Todo!
+}
+
 type Query {
   getAllTodoItems: [Todo!]!
 }
 
 type Todo {
-  createdAt: String!
   description: String!
-  dueDate: String!
+  dueDate: String
   id: ID!
   title: String!
-  updatedAt: String!
 }
