@@ -8,7 +8,8 @@
   "scripts": {
     "migration:generate": "sh ./migration-generate.sh $1",
     "migration:run": "npx typeorm-ts-node-esm migration:run -d ./data-source.ts",
-    "migration:revert": "npx typeorm-ts-node-esm migration:revert -d ./data-source.ts"
+    "migration:revert": "npx typeorm-ts-node-esm migration:revert -d ./data-source.ts",
+    "dev": "nodemon"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -17,6 +18,7 @@
     "@apollo/server": "^4.9.4",
     "@graphql-tools/schema": "^10.0.0",
     "graphql": "^16.8.1",
+    "nodemon": "^3.0.1",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1",
     "typeorm": "^0.3.17"
