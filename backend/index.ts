@@ -1,8 +1,34 @@
-const server = Bun.serve({
-  port: 3000,
-  fetch(request) {
-    return new Response("Welcome to Bun!");
-  },
+import { AppDataSource } from "./data-source";
+import { buildSchema, buildTypeDefsAndResolvers } from "type-graphql";
+import { TodoResolver } from "./src/resolvers/todo.resolver";
+import { ApolloServer } from "@apollo/server";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import { startStandaloneServer } from "@apollo/server/standalone";
+
+// Establish connection with DB
+await AppDataSource.initialize()
+  .then(async (dataSource) => {
+    console.log("Database connection established");
+  })
+  .catch((err) => {
+    console.log("Error when setting up database connection");
+    console.error(err);
+  });
+
+// Automatically generate schema.gql
+await buildSchema({
+  resolvers: [TodoResolver],
+  emitSchemaFile: true,
 });
 
-console.log(`Listening on localhost:${server.port}`);
+const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
+  resolvers: [TodoResolver],
+});
+
+const executableSchema = makeExecutableSchema({ typeDefs, resolvers });
+
+const server = new ApolloServer({ schema: executableSchema });
+
+startStandaloneServer(server, { listen: { port: 3000 } }).then(() => {
+  console.log("🚀 Server READY");
+});

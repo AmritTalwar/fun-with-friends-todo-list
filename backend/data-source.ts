@@ -22,12 +22,3 @@ export const AppDataSource = new DataSource({
   migrationsTableName: "migrations",
   subscribers: [],
 });
-
-// AppDataSource.initialize()
-//   .then(async (dataSource) => {
-//     console.log("Database connection established");
-//   })
-//   .catch((err) => {
-//     console.log("Error when setting up database connection");
-//     console.error(err);
-//   });
