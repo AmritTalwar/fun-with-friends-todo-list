@@ -1,8 +1,8 @@
-import { ObjectType, Field, ID } from "type-graphql";
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
 @ObjectType()
+@Entity()
 export class Todo {
   @Field((type) => ID)
   @PrimaryGeneratedColumn()

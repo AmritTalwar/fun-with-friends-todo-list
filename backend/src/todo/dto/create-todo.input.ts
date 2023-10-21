@@ -1,5 +1,5 @@
-import { InputType, Field } from "type-graphql";
-import { Todo } from "../models";
+import { InputType, Field } from '@nestjs/graphql';
+import { Todo } from '../entities';
 
 @InputType()
 export class CreateTodoInput implements Partial<Todo> {
@@ -10,5 +10,5 @@ export class CreateTodoInput implements Partial<Todo> {
   description: string;
 
   @Field({ nullable: true })
-  dueDate: string;
+  dueDate?: string;
 }
