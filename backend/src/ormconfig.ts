@@ -1,5 +1,6 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 
+console.log(__dirname + '/__migrations__/*{.ts,.js}');
 const dataSourceConfig: DataSourceOptions = {
   type: 'postgres',
   port: 5432,
@@ -7,8 +8,8 @@ const dataSourceConfig: DataSourceOptions = {
   username: process.env.POSTGRES_USER || 'user',
   password: process.env.POSTGRES_PASSWORD || 'shayda123',
   database: process.env.POSTGRES_DB || 'todo',
-  migrations: [`${__dirname}/__migrations__/*{.ts,.js}`],
-  entities: [`${__dirname}/**/entities/*.entity{.ts,.js}`],
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
+  migrations: [__dirname + '/__migrations__/*{.ts,.js}'],
   migrationsTableName: 'migration_history',
   cache: true,
   migrationsRun: process.env.MIGRATIONS_RUN === 'true',
